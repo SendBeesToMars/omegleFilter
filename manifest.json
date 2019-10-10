@@ -1,0 +1,30 @@
+{
+    "name": "Omegle chat parser",
+    "version": "1.0",
+    "description": "filter and stuff",
+    "permissions": ["activeTab", "storage", "declarativeContent"],
+    "background": {
+        "scripts": ["background.js"],
+        "persistnet": false
+    },
+    "content_scripts": [{
+        "matches": ["https://www.omegle.com/*"],
+        "js": ["content.js"]
+    }],
+    "page_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "images/type3/favicon16.png",
+            "32": "images/type3/favicon32.png",
+            "48": "images/type3/favicon48.png",
+            "128": "images/type3/favicon128.png"
+        }
+    },
+    "icons": {
+        "16": "images/type3/favicon16.png",
+        "32": "images/type3/favicon32.png",
+        "48": "images/type3/favicon48.png",
+        "128": "images/type3/favicon128.png"
+    },
+    "manifest_version": 2
+}

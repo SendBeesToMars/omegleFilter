@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      button {
+        height: 30px;
+        width: 30px;
+        outline: none;
+        margin: 10px;
+      }
+      span{
+        color: orangered;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    </div>
+    <div>
+      <p id="filterOutput"></p>
+    </div>
+    <div>
+        <form id="filterForm">
+            Filter(seperate by comma)<input type="text" name="filterInput" id="filterInput">
+            # of messages to parse: <span id="rangeNumber"></span><input type="range" min="0" max="20" value="2" class="slider" id="filterRange">
+        </form>
+    </div>
+  </body>
+  <script src="popup.js"></script>
+</html>
