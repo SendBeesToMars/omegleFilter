@@ -10,21 +10,26 @@ const bodyCallback = function(){
 
 const callback = function(){
     let strangermsgClass = document.getElementsByClassName("strangermsg");
-    let dcBtn = document.getElementsByClassName("disconnectbtn")[0];
     chrome.storage.sync.get("range", function(data){
         let range = data.range;
-        console.log("range: " + range + "\nlen: " + strangermsgClass.length);
+        // only checks the last message and if messages exists
         if(strangermsgClass.length <= range && strangermsgClass.length > 0){
-            console.log("inside range check");
             chrome.storage.sync.get("filter", function(data){
-                let filter = data.filter;
-                console.log(strangermsgClass[strangermsgClass.length - 1].innerText.toUpperCase() + "@@@ " + "STRANGER: " + filter);
-                if(strangermsgClass[strangermsgClass.length - 1].innerText.toUpperCase().includes("STRANGER: " + filter.toUpperCase())){
-                    console.log("Disconnecting. Reason: filter ");
-                    // dcBtn.click();
-                    // dcBtn.click();
-                    // dcBtn.click();
-                    alert("dc");
+                let filterString = data.filter;
+                let filterArray = filterString.split(",");
+                for (let filter in filterArray){
+                    // removes spaces from start and end of filter
+                    if(filterArray[filter][0] === " "){
+                        filterArray[filter] = filterArray[filter].substr(1);
+                    }
+                    if(filterArray[filter][filterArray[filter].length - 1] === " "){
+                        filterArray[filter] = filterArray[filter].substr(0, filterArray[filter].length - 1);
+                    }
+                    console.log(filterArray[filter]);
+                    if(strangermsgClass[strangermsgClass.length - 1].innerText.toUpperCase().includes("STRANGER: " + filterArray[filter].toUpperCase())){
+                        console.log("Disconnecting. Reason: filter keyword - " + filterArray[filter]);
+                        disconnect();
+                    }
                 }
             });
         }
@@ -35,3 +40,10 @@ const observer = new MutationObserver(callback);
 const bodyObesrver = new MutationObserver(bodyCallback);
 
 bodyObesrver.observe(body, config);
+
+function disconnect(){
+    let dcBtn = document.getElementsByClassName("disconnectbtn")[0];
+    dcBtn.click();
+    dcBtn.click();
+    dcBtn.click();
+}
