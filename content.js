@@ -25,7 +25,6 @@ const callback = function(){
                     if(filterArray[filter][filterArray[filter].length - 1] === " "){
                         filterArray[filter] = filterArray[filter].substr(0, filterArray[filter].length - 1);
                     }
-                    console.log(filterArray[filter]);
                     if(strangermsgClass[strangermsgClass.length - 1].innerText.toUpperCase().includes("STRANGER: " + filterArray[filter].toUpperCase())){
                         console.log("Disconnecting. Reason: filter keyword - " + filterArray[filter]);
                         disconnect();
