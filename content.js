@@ -40,7 +40,7 @@ const bodyObesrver = new MutationObserver(bodyCallback);
 
 bodyObesrver.observe(body, config);
 
-    //disconnects and starts a new chat  
+    //disconnects and starts a new chat
 function disconnect(){
     let dcBtn = document.getElementsByClassName("disconnectbtn")[0];
     dcBtn.click();
